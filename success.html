@@ -45,7 +45,7 @@
             padding: 15px;
             background: #1a1a1a;
             border-radius: 12px;
-            border-left: 5px solid #333;
+            border-left: 8px solid #333;
         }
 
         .rating-header {
@@ -55,16 +55,15 @@
             display: block;
         }
 
-        /* Color Coding */
-        .group-10, .group-9 { border-left-color: #00ff88; } /* GOAT Green */
-        .group-8, .group-7 { border-left-color: #ccff00; }  /* Great Lime */
-        .group-6, .group-5 { border-left-color: #ffcc00; }  /* Mid Yellow */
-        .group-4, .group-3 { border-left-color: #ff6600; }  /* Low Orange */
-        .group-2, .group-1 { border-left-color: #ff4444; }  /* Bad Red */
-        .group-need { border-left-color: #888; border-left-style: dashed; }
+        /* NEW COLOR CODING */
+        .group-10 { border-left-color: #000000; background: #222; } /* Black */
+        .group-9, .group-8, .group-7 { border-left-color: #2ecc71; } /* Green */
+        .group-6, .group-5, .group-4 { border-left-color: #f1c40f; } /* Yellow */
+        .group-3, .group-2, .group-1 { border-left-color: #e74c3c; } /* Red */
+        .group-need { border-left-color: #34495e; border-left-style: dashed; }
 
         ul { list-style: none; padding: 0; margin: 0; }
-        li { padding: 5px 0; border-bottom: 1px solid #222; }
+        li { padding: 8px 0; border-bottom: 1px solid #222; }
         
         /* Link Styles */
         li a {
@@ -88,14 +87,14 @@
     <div id="food" class="content-section active"></div>
     
     <div id="wip" class="content-section">
-        <div class="rating-group">
+        <div class="rating-group group-need">
             <span class="rating-header">wip</span>
             <ul><li>go away</li></ul>
         </div>
     </div>
 
     <script>
-        // DATA ARRAY: Update your restaurants here!
+        // DATA ARRAY
         const foodData = {
             "10": [
                 ["the food pitt", "https://www.thefoodpitt.com/"]
@@ -111,9 +110,8 @@
                 ["nanyea ethiopian", "https://www.facebook.com/nanyea937/"],
                 ["tom and dots", "https://www.tomanddotsgelato.com/"]
             ],
-            "8 - exceptional": [
+            "8 - exceptional, stands out": [
                 ["amar india", "https://www.amarindiadayton.com/"],
-                ["kung fu noodle", "https://share.google/KGTZHnVxQitPzyu8E"],
                 ["don julio mexican", "https://donjuliostreetfood.com/"],
                 ["wheat penny?", "https://www.wheatpennydayton.com/"],
                 ["disalvo deli", "https://www.disalvosdeli.com/home/"]
@@ -122,6 +120,7 @@
                 ["dewey’s", "https://deweyspizza.com/"],
                 ["cm chicken", "https://www.cmchickenkorean.com/"],
                 ["tacos barra jalisco", "https://www.facebook.com/TacosBarraJalisco/"],
+                ["kung fu noodle", "https://share.google/KGTZHnVxQitPzyu8E"],
                 ["bushido ramen?", "https://www.facebook.com/p/Bushido-Ramen-Shop-61575229888575/"],
                 ["old scratch", "https://www.oldscratchpizza.com/"]
             ],
@@ -133,7 +132,7 @@
             "5 - good/average": [
                 ["tj chumps", ""],
                 ["pasha grill", ""],
-                ["massaman thai", ""],
+                ["massman thai", ""],
                 ["fu mon lau", ""],
                 ["yungs cafe", ""]
             ],
@@ -177,7 +176,8 @@
             let html = '';
 
             for (const [rating, list] of Object.entries(foodData)) {
-                const score = parseInt(rating);
+                // Get just the number from the rating text (e.g. "8" from "8 - exceptional")
+                const score = parseInt(rating.split(' ')[0]);
                 const colorClass = isNaN(score) ? 'group-need' : `group-${score}`;
 
                 html += `<div class="rating-group ${colorClass}">
