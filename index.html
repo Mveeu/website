@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Private Site</title>
 
-  <!-- Baloo 2 font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600&display=swap" rel="stylesheet">
@@ -18,43 +18,100 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
+      margin: 0;
     }
+
     .container {
       text-align: center;
-      max-width: 400px;
+      padding: 20px;
     }
+
+    /* Making the text bigger */
+    .sentence {
+      font-size: 2.5rem; /* Large readable text */
+      line-height: 1.4;
+      font-weight: 400;
+    }
+
+    .label-text {
+      font-size: 1.2rem;
+      color: #888;
+      margin-bottom: 10px;
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* Styling the input to look like a blank line */
     input {
-      padding: 10px;
-      font-size: 18px;
-      margin-top: 12px;
-      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 3px solid #eee;
+      color: #ff6b6b; /* Accent color for the typed text */
+      font-family: "Baloo 2", cursive;
+      font-size: 2.5rem;
+      width: 160px; /* Adjusted for the name "Michael" */
+      text-align: center;
+      outline: none;
+      transition: border-color 0.3s;
+      padding: 0;
+      margin: 0 10px;
     }
+
+    input:focus {
+      border-bottom-color: #ff6b6b;
+    }
+
+    input::placeholder {
+      color: #333;
+      font-size: 1.5rem;
+    }
+
     button {
-      margin-top: 12px;
-      padding: 10px 20px;
-      font-size: 18px;
+      display: block;
+      margin: 40px auto 0;
+      padding: 10px 30px;
+      background: transparent;
+      border: 2px solid #eee;
+      color: #eee;
+      font-family: "Baloo 2", cursive;
+      font-size: 1.2rem;
       cursor: pointer;
+      border-radius: 50px;
+      transition: all 0.3s;
     }
+
+    button:hover {
+      background: #eee;
+      color: #111;
+    }
+
     .error {
-      color: #ff6b6b;
-      margin-top: 12px;
+      color: #ff4444;
+      margin-top: 20px;
+      font-size: 1.2rem;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <p><strong>Fill in below</strong></p>
-    <p>This website was created by ______ Kinser</p>
-
+    <span class="label-text">Fill in below</span>
+    
     <form method="POST" action="/check">
-      <input name="answer" placeholder="First name" required />
-      <button type="submit">Submit</button>
+      <div class="sentence">
+        This website was created by 
+        <input name="answer" placeholder="???" required autocomplete="off" /> 
+        Kinser
+      </div>
+      <button type="submit">Unlock Site</button>
     </form>
 
-    <!-- Error handling -->
+    <div id="error-message"></div>
+
     <script>
+      // Display error message if URL has ?error=1
       if (new URLSearchParams(window.location.search).get("error")) {
-        document.write('<div class="error">Incorrect answer</div>');
+        document.getElementById("error-message").innerHTML = '<div class="error">Try again.</div>';
       }
     </script>
   </div>
