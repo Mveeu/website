@@ -39,7 +39,6 @@
         .content-section { display: none; width: 100%; max-width: 600px; }
         .content-section.active { display: block; }
 
-        /* Rating Group Styles */
         .rating-group {
             margin-bottom: 20px;
             padding: 15px;
@@ -55,17 +54,15 @@
             display: block;
         }
 
-        /* NEW COLOR CODING */
-        .group-10 { border-left-color: #000000; background: #222; } /* Black */
-        .group-9, .group-8, .group-7 { border-left-color: #2ecc71; } /* Green */
-        .group-6, .group-5, .group-4 { border-left-color: #f1c40f; } /* Yellow */
-        .group-3, .group-2, .group-1 { border-left-color: #e74c3c; } /* Red */
+        .group-10 { border-left-color: #000000; background: #222; }
+        .group-9, .group-8, .group-7 { border-left-color: #2ecc71; }
+        .group-6, .group-5, .group-4 { border-left-color: #f1c40f; }
+        .group-3, .group-2, .group-1 { border-left-color: #e74c3c; }
         .group-need { border-left-color: #34495e; border-left-style: dashed; }
 
         ul { list-style: none; padding: 0; margin: 0; }
         li { padding: 8px 0; border-bottom: 1px solid #222; }
         
-        /* Link Styles */
         li a {
             color: #eee;
             text-decoration: none;
@@ -94,7 +91,6 @@
     </div>
 
     <script>
-        // DATA ARRAY
         const foodData = {
             "10": [
                 ["the food pitt", "https://www.thefoodpitt.com/"]
@@ -187,7 +183,6 @@
             let html = '';
 
             for (const [rating, list] of Object.entries(foodData)) {
-                // Get just the number from the rating text (e.g. "8" from "8 - exceptional")
                 const score = parseInt(rating.split(' ')[0]);
                 const colorClass = isNaN(score) ? 'group-need' : `group-${score}`;
 
@@ -212,6 +207,7 @@
             btn.classList.add('active');
         }
 
+        // Run the render function
         renderFood();
     </script>
 </body>
